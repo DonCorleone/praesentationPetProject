@@ -1,4 +1,4 @@
-# Präsentation Suva 22.01,2019
+# Präsentation Suva 22.01.2019
 
 ## Server
 
@@ -139,23 +139,23 @@ console.log('@@@@@@@@@ USING DEVELOPMENT @@@@@@@@@@@@@@@');
 process.traceDeprecation = true;
 
 module.exports = {
-	
-	mode: 'development',
-	devtool: 'source-map',
-	performance: {
-		hints: false
-	},
-	entry: {
-		polyfills: './angularApp/polyfills.ts',
-		vendor: './angularApp/vendor.ts',
-		app: './angularApp/main.ts'
-	},
+
+    mode: 'development',
+    devtool: 'source-map',
+    performance: {
+        hints: false
+    },
+    entry: {
+        polyfills: './angularApp/polyfills.ts',
+        vendor: './angularApp/vendor.ts',
+        app: './angularApp/main.ts'
+    },
 ```
 
-webpack.prod.js:
+**webpack.prod.js:**
 
 ```javascript
-onst path = require('path');
+const path = require('path');
 
 const webpack = require('webpack');
 
@@ -174,22 +174,92 @@ console.log('@@@@@@@@@ USING PRODUCTION @@@@@@@@@@@@@@@');
 process.traceDeprecation = true;
 
 module.exports = {
-	mode: 'production',
-	entry: {
-		vendor: './angularApp/vendor.ts',
-		polyfills: './angularApp/polyfills.ts',
-		app: './angularApp/main-aot.ts' // AoT compilation
-	},
+    mode: 'production',
+    entry: {
+        vendor: './angularApp/vendor.ts',
+        polyfills: './angularApp/polyfills.ts',
+        app: './angularApp/main-aot.ts' // AoT compilation
+    },
 
-	output: {
-		path: ROOT + '/wwwroot/',
-		filename: 'dist/[name].[hash].bundle.js',
-		chunkFilename: 'dist/[id].[hash].chunk.js',
-		publicPath: '/'
-	},
+    output: {
+        path: ROOT + '/wwwroot/',
+        filename: 'dist/[name].[hash].bundle.js',
+        chunkFilename: 'dist/[id].[hash].chunk.js',
+        publicPath: '/'
+    },
 
-	resolve: {
-		extensions: ['.ts', '.js', '.json']
-	},
-
+    resolve: {
+        extensions: ['.ts', '.js', '.json']
+    },
 ```
+![](_bilder/webPackUrl.png)
+
+## Datenbanken
+
+### NoSql
+
+- Cosmos DB (Azure)
+- Couchbase
+- MongoDB
+
+## MongoDB
+
+![](_bilder/MongoDB.png)
+
+- Platzhirsch
+- Opensource
+- Plattformunabhängig
+- JSON
+- Javascript-Cli
+
+```javascript
+db.inventory.find( { status: { $in: [ "A", "D" ] } } )
+```
+
+entspricht im SQL
+
+```sql
+SELECT * FROM inventory WHERE status in ("A", "D")
+```
+
+- .NET Core Driver
+
+```csharp
+//1. Connect to MongoDB instance running on localhost
+var client = new MongoClient();
+
+//Access database named 'test'
+var database = client.GetDatabase("test");
+
+//Access collection named 'restaurants'
+var collection = database.GetCollection("restaurants");
+```
+
+- Online University
+
+### SQL
+
+- PostgreSQL
+- MySQL
+- Azure SQL
+- MariaDB
+
+### Maria DB
+
+![](_bilder/MariaDB.png)
+
+- Opensource
+- MySql Derrivat
+- Plattformunabhängig
+
+## Hosting
+
+### Varianten
+
+- Azure (Mircosoft Cloud)
+- Hosting (.NET Core)
+- Zu Hause 
+
+### Zu Hause
+
+Webserver mit Datenbanken
