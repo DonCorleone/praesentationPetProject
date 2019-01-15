@@ -67,6 +67,44 @@ ng new client
 
 - Aufhebung der Webpack-Kapselung der Angular CLI
 
+**angular.json**
+
+```json
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "cliStarter": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/cliStarter",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": []
+          },
+```
+**bash:**
 ```bash
 ng eject
 ```
@@ -75,3 +113,83 @@ _The 'eject' command has been disabled and will be removed completely in 8.0.
 The new configuration format provides increased flexibility to modify the
 configuration of your workspace without ejecting._
 
+### Webpack
+
+![](_bilder/webPack.png)
+
+At its core, webpack is a static module bundler for modern JavaScript applications. When webpack processes your application, it internally builds a dependency graph which maps every module your project needs and generates one or more bundles.
+
+**webpack.dev.js:**
+
+```javascript
+const path = require('path');
+
+const webpack = require('webpack');
+
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
+
+const helpers = require('./webpack.helpers');
+
+const ROOT = path.resolve(__dirname, '..');
+
+console.log('@@@@@@@@@ USING DEVELOPMENT @@@@@@@@@@@@@@@');
+process.traceDeprecation = true;
+
+module.exports = {
+	
+	mode: 'development',
+	devtool: 'source-map',
+	performance: {
+		hints: false
+	},
+	entry: {
+		polyfills: './angularApp/polyfills.ts',
+		vendor: './angularApp/vendor.ts',
+		app: './angularApp/main.ts'
+	},
+```
+
+webpack.prod.js:
+
+```javascript
+onst path = require('path');
+
+const webpack = require('webpack');
+
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ngToolsWebpack = require('@ngtools/webpack');
+const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
+const OfflinePlugin = require('offline-plugin');
+
+const helpers = require('./webpack.helpers');
+
+const ROOT = path.resolve(__dirname, '..');
+
+console.log('@@@@@@@@@ USING PRODUCTION @@@@@@@@@@@@@@@');
+process.traceDeprecation = true;
+
+module.exports = {
+	mode: 'production',
+	entry: {
+		vendor: './angularApp/vendor.ts',
+		polyfills: './angularApp/polyfills.ts',
+		app: './angularApp/main-aot.ts' // AoT compilation
+	},
+
+	output: {
+		path: ROOT + '/wwwroot/',
+		filename: 'dist/[name].[hash].bundle.js',
+		chunkFilename: 'dist/[id].[hash].chunk.js',
+		publicPath: '/'
+	},
+
+	resolve: {
+		extensions: ['.ts', '.js', '.json']
+	},
+
+```
