@@ -1,6 +1,6 @@
 # Präsentation Suva 22.01.2019
 
-## Server
+## Server Überblick
 
 ### ASP.NET CORE 2.1
 
@@ -41,7 +41,7 @@ project.csproj
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
 ```
 
-## Client
+## Client Überblick
 
 ### Angular (2+)
 
@@ -202,7 +202,7 @@ module.exports = {
 - Couchbase
 - MongoDB
 
-## MongoDB
+### MongoDB
 
 ![](_bilder/MongoDB.png)
 
@@ -256,10 +256,75 @@ var collection = database.GetCollection("restaurants");
 
 ### Varianten
 
-- Azure (Mircosoft Cloud)
+- Azure (Microsoft Cloud)
 - Hosting (.NET Core)
 - Zu Hause 
 
 ### Zu Hause
 
 Webserver mit Datenbanken
+
+![](_bilder/DS216.png)
+
+- Technologieunabhängigkeit
+- DevOps Know How
+- Linux Know How
+
+## Docker
+
+![](_bilder/docker.png)
+
+- Technologieunabhängigkeit
+- Einfachere Installationsroutinen
+- Backup Hosting
+
+**docker-compse.yml:**
+```yml
+version: '3'
+
+services:
+  mongodb:
+    container_name: mongodbKinderkultur
+    image: mongo
+    env_file: .env
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+    networks:
+      - webapi-network
+    ports:
+      - "27017:27017"
+  maria:
+    container_name: mariadbKinderkultur
+    image: mariadb
+    restart: always
+    env_file: .env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MARIA_DB_ROOT_PASSWORD}
+    networks:
+      - webapi-network
+    ports:
+      - "3306:3306"
+networks:
+  webapi-network:
+    driver: bridge
+```
+
+**bash:**
+```bash
+docker images
+
+REPOSITORY                     TAG                 IMAGE ID            CREATED             SIZE
+backup-mongodb-before-mojave   latest              4499d0d18f33        2 months ago        361MB
+backup-mariadb-before-mojave   latest              cd18449acf21        2 months ago        396MB
+```
+
+**StartServer-Script:**
+
+```bash
+#!/bin/bash
+docker start mariadbKinderkultur
+docker start mongodbKinderkultur
+dotnet run
+```
