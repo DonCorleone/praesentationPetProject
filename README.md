@@ -252,6 +252,21 @@ var collection = database.GetCollection("restaurants");
 - MySql Derrivat
 - Plattformunabhängig
 
+## OR-Mapping
+
+- Ausschlaggebender Punkt: Identity on ASP.NET Core als SQL Datenbank
+- Entity Framework Core
+
+![](_bilder/efcf.png)
+
+- Code First Ansatz schwierig im NoSQL
+
+![](_bilder/EFCodeFirstVSCode.png)
+
+**Neu generierte Tabellen**
+
+![](_bilder/TabellenSQL.png)
+
 ## Hosting
 
 ### Varianten
@@ -328,3 +343,51 @@ docker start mariadbKinderkultur
 docker start mongodbKinderkultur
 dotnet run
 ```
+
+
+## Demo
+
+### Server
+
+#### Swagger
+
+Tool zum Designen und Testen von RESTful Webservices
+
+```xml
+<PackageReference Include="NSwag.AspNetCore" Version="11.17.21" />
+```
+
+**Swagger URL:**
+
+![](_bilder/swaggerUrl.png)
+
+**Swagger GET:**
+
+![](_bilder/SwaggerGet.png)
+
+**Swagger Response:**
+
+![](_bilder/SwaggerResponse.png)
+
+#### Versioning
+
+Versionierung der API URL
+
+- Release vs. Production
+
+```xml
+<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="2.3.0" />
+```
+
+#### Source Code
+
+### Client
+
+### Readonly Links
+
+### Anmeldung CMS
+
+### Links Editierbar
+
+### Signal R
+
