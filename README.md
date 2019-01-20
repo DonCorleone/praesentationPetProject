@@ -1,6 +1,44 @@
-# Präsentation Suva 22.01.2019
+<!-- theme: uncover -->
+<!-- class: invert -->
+
+### Präsentation
+
+# 'Pet Project' kinderkultur.ch 2.0
+
+##### von Linus Wieland
+
+#### @SUVA 22.01.2019
+---
+
+## Übersicht
+
+<!-- footer: Linus' Pet Project @SUVA 2019 - Übersicht -->
+
+- Server
+- Client
+- Datenbanken
+- OR-Mapping
+- Hosting
+- Live-Demo
+
+---
+
+<!-- footer: Linus' Pet Project @SUVA 2019 -->
+
+---
 
 ## Server Überblick
+
+<!-- footer: Linus' Pet Project @SUVA 2019 - Server -->
+
+---
+<!-- footer: Linus' Pet Project @SUVA 2019 - Server -->
+
+![](_bilder/aspnetCore.png)
+
+>ASP.NET Core is a cross-platform, high-performance, open-source framework for building modern, cloud-based, Internet-connected applications
+
+---
 
 ### ASP.NET CORE 2.1
 
@@ -8,23 +46,34 @@
 - Plattformunabhängig
 - C#
 
+---
+
 #### ASP.NET Core 2.1 mit Angular Starter Template
 
 ```bash
 dotnet new angular
 ```
 
+---
+
 ![](_bilder/dotnetNewAngular.png)
 
-project.csproj
+---
+
+**project.csproj:**
 
 ```xml
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design"
+        Version="2.1.2" PrivateAssets="All" />
+    <PackageReference
+        Include="Microsoft.AspNetCore.SpaServices.Extensions"
+        Version="2.1.1" />
 ```
 
 _Verworfen weil zu enge Verwebung von Client & Server_
+
+---
 
 #### ASP.NET WebAPI
 
@@ -32,40 +81,68 @@ _Verworfen weil zu enge Verwebung von Client & Server_
 dotnet new webapi
 ```
 
+---
+
 ![](_bilder/dotnetNewWebapi.png)
 
-project.csproj
+---
+
+**project.csproj:**
 
 ```xml
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" 
+        Version="2.1.2" PrivateAssets="All" />
 ```
+
+---
+
+<!-- footer: Linus' Pet Project @SUVA 2019 -->
+
+---
 
 ## Client Überblick
 
+<!-- footer: Linus' Pet Project @SUVA 2019 - Client -->
+
+---
+
+![](_bilder/angularLogo.png)
+> Angular helps you build modern applications for the web, mobile, or desktop. 
+
+---
+
 ### Angular (2+)
 
-#### Angular CLI
+- Opensource
+- Plattformunabhängig
+- Typescript
 
-- Erstellen eines lauffähigen Client
+---
+
+#### Angular CLI
 
 ```bash
 ng new client
 ```
 
-- Start des Clients
-
 ```bash
 ./client/ng serve
 ```
 
-- Start mit Hilfe von node.js
+_Startet mit Hilfe von node.js_
+
+---
 
 ![](_bilder/ngNew.png)
+
+---
 
 #### NG eject
 
 - Aufhebung der Webpack-Kapselung der Angular CLI
+
+---
 
 **angular.json**
 
@@ -85,59 +162,31 @@ ng new client
           "styleext": "scss"
         }
       },
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/cliStarter",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": []
-          },
 ```
+
+---
+
 **bash:**
+
 ```bash
 ng eject
 ```
 
-_The 'eject' command has been disabled and will be removed completely in 8.0.
+>The 'eject' command has been disabled and will be removed completely in 8.0.
 The new configuration format provides increased flexibility to modify the
-configuration of your workspace without ejecting._
+configuration of your workspace without ejecting.
 
-### Webpack
+---
 
 ![](_bilder/webPack.png)
 
-At its core, webpack is a static module bundler for modern JavaScript applications. When webpack processes your application, it internally builds a dependency graph which maps every module your project needs and generates one or more bundles.
+>webpack is a static module bundler for modern JavaScript applications
+
+---
 
 **webpack.dev.js:**
 
 ```javascript
-const path = require('path');
-
-const webpack = require('webpack');
-
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
-
-const helpers = require('./webpack.helpers');
-
-const ROOT = path.resolve(__dirname, '..');
-
-console.log('@@@@@@@@@ USING DEVELOPMENT @@@@@@@@@@@@@@@');
-process.traceDeprecation = true;
-
 module.exports = {
 
     mode: 'development',
@@ -152,27 +201,11 @@ module.exports = {
     },
 ```
 
+---
+
 **webpack.prod.js:**
 
 ```javascript
-const path = require('path');
-
-const webpack = require('webpack');
-
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ngToolsWebpack = require('@ngtools/webpack');
-const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
-const OfflinePlugin = require('offline-plugin');
-
-const helpers = require('./webpack.helpers');
-
-const ROOT = path.resolve(__dirname, '..');
-
-console.log('@@@@@@@@@ USING PRODUCTION @@@@@@@@@@@@@@@');
-process.traceDeprecation = true;
-
 module.exports = {
     mode: 'production',
     entry: {
@@ -187,42 +220,64 @@ module.exports = {
         chunkFilename: 'dist/[id].[hash].chunk.js',
         publicPath: '/'
     },
-
-    resolve: {
-        extensions: ['.ts', '.js', '.json']
-    },
 ```
+
+---
+
 ![](_bilder/webPackUrl.png)
 
-## Datenbanken
+---
 
-### NoSql
+<!-- footer: Linus' Pet Project @SUVA 2019 -->
+
+---
+
+## Übersicht Datenbanken
+
+<!-- footer: Linus' Pet Project @SUVA 2019 - Datenbanken -->
+
+---
+
+<!-- footer: Linus' Pet Project @SUVA 2019 - Datenbanken -->
+
+## NoSQL
 
 - Cosmos DB (Azure)
 - Couchbase
 - MongoDB
 
-### MongoDB
+---
 
 ![](_bilder/MongoDB.png)
+
+>MongoDB is a distributed database at its core, so high availability, horizontal scaling, and geographic distribution are built in and easy to use.
+
+---
+
+### Mongo DB
 
 - Platzhirsch
 - Opensource
 - Plattformunabhängig
-- JSON
-- Javascript-Cli
+- BSON (JSON) Datenhaltung
+
+---
+
+- Javascript-Cli:
 
 ```javascript
 db.inventory.find( { status: { $in: [ "A", "D" ] } } )
 ```
 
-entspricht im SQL
+_entspricht im SQL_
 
 ```sql
 SELECT * FROM inventory WHERE status in ("A", "D")
 ```
 
-- .NET Core Driver
+---
+
+- .NET Core Driver:
 
 ```csharp
 //1. Connect to MongoDB instance running on localhost
@@ -237,63 +292,111 @@ var collection = database.GetCollection("restaurants");
 
 - Online University
 
-### SQL
+---
+
+## OR-Mapping
+
+<!-- footer: Linus' Pet Project @SUVA 2019 -->
+
+---
+
+![](_bilder/efcf.png)
+
+---
+
+<!-- footer: Linus' Pet Project @SUVA 2019 - Datenbanken -->
+
+### Entity Framework Core
+
+- Ausschlaggebender Punkt: Identity on ASP.NET Core als SQL Datenbank
+- Code First Ansatz ist schwierig im NoSQL
+
+---
+
+![](_bilder/EFCodeFirstVSCode.png)
+
+---
+
+**Neu generierte Tabellen:**
+
+![](_bilder/TabellenSQL.png)
+
+---
+
+<!-- footer:  -->
+
+## SQL
 
 - PostgreSQL
 - MySQL
 - Azure SQL
 - MariaDB
 
-### Maria DB
+---
 
 ![](_bilder/MariaDB.png)
+
+---
+
+### Maria DB
 
 - Opensource
 - MySql Derrivat
 - Plattformunabhängig
 
-## OR-Mapping
+---
 
-- Ausschlaggebender Punkt: Identity on ASP.NET Core als SQL Datenbank
-- Entity Framework Core
-
-![](_bilder/efcf.png)
-
-- Code First Ansatz schwierig im NoSQL
-
-![](_bilder/EFCodeFirstVSCode.png)
-
-**Neu generierte Tabellen**
-
-![](_bilder/TabellenSQL.png)
+<!-- footer:  -->
 
 ## Hosting
+
+---
+<!-- footer: Linus' Pet Project @SUVA 2019 - Hosting -->
 
 ### Varianten
 
 - Azure (Microsoft Cloud)
 - Hosting (.NET Core)
-- Zu Hause 
+- Zu Hause
+
+---
 
 ### Zu Hause
 
 Webserver mit Datenbanken
 
+---
+
 ![](_bilder/DS216.png)
+
+---
 
 - Technologieunabhängigkeit
 - DevOps Know How
 - Linux Know How
 
+---
+
+<!-- footer:  -->
+
 ## Docker
 
+---
+<!-- footer: Linus' Pet Project @SUVA 2019 - Docker -->
+
 ![](_bilder/docker.png)
+
+---
 
 - Technologieunabhängigkeit
 - Einfachere Installationsroutinen
 - Backup Hosting
+- Läuft auf Heimserver
+
+---
 
 **docker-compse.yml:**
+
 ```yml
 version: '3'
 
@@ -310,23 +413,12 @@ services:
       - webapi-network
     ports:
       - "27017:27017"
-  maria:
-    container_name: mariadbKinderkultur
-    image: mariadb
-    restart: always
-    env_file: .env
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MARIA_DB_ROOT_PASSWORD}
-    networks:
-      - webapi-network
-    ports:
-      - "3306:3306"
-networks:
-  webapi-network:
-    driver: bridge
 ```
 
+---
+
 **bash:**
+
 ```bash
 docker images
 
@@ -334,6 +426,8 @@ REPOSITORY                     TAG                 IMAGE ID            CREATED  
 backup-mongodb-before-mojave   latest              4499d0d18f33        2 months ago        361MB
 backup-mariadb-before-mojave   latest              cd18449acf21        2 months ago        396MB
 ```
+
+---
 
 **StartServer-Script:**
 
@@ -344,30 +438,47 @@ docker start mongodbKinderkultur
 dotnet run
 ```
 
+---
+
+<!-- footer:  -->
 
 ## Demo
 
+---
+<!-- footer: Linus' Pet Project @SUVA 2019 - Demo -->
+
 ### Server
+
+---
 
 #### Swagger
 
 Tool zum Designen und Testen von RESTful Webservices
 
 ```xml
-<PackageReference Include="NSwag.AspNetCore" Version="11.17.21" />
+<PackageReference Include="NSwag.AspNetCore"
+    Version="11.17.21" />
 ```
+
+---
 
 **Swagger URL:**
 
 ![](_bilder/swaggerUrl.png)
 
+---
+
 **Swagger GET:**
 
 ![](_bilder/SwaggerGet.png)
 
+---
+
 **Swagger Response:**
 
 ![](_bilder/SwaggerResponse.png)
+
+---
 
 #### Versioning
 
@@ -376,18 +487,20 @@ Versionierung der API URL
 - Release vs. Production
 
 ```xml
-<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="2.3.0" />
+<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" 
+    Version="2.3.0" />
 ```
 
-#### Source Code
+---
+
+#### Source Code
 
 ### Client
 
-### Readonly Links
+### Readonly Links
 
-### Anmeldung CMS
+### Anmeldung CMS
 
-### Links Editierbar
+### Links Editierbar
 
-### Signal R
-
+### Signal R
