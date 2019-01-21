@@ -552,11 +552,7 @@ Versionierung der API URL
 
 ---
 
-![bg 75%](_bilder/kinderkultur2_links_editlist.png)
-
----
-
-![bg 75%](_bilder/kinderkultur2_links_editdetail.png)
+![bg 75%](_bilder/kinderkutlur2_links_editDetail.png)
 
 ---
 
