@@ -14,12 +14,12 @@
 
 <!-- footer: Linus' Pet Project @SUVA 2019 - Übersicht -->
 
+- Live-Demo kinderkultur.ch
 - Server
 - Client
 - Datenbanken
-- OR-Mapping
 - Hosting
-- Live-Demo
+- Live-Demo kinderkultur.ch 2.0
 
 ---
 
@@ -27,7 +27,35 @@
 
 ---
 
-## Server Überblick
+### kinderkultur.ch
+
+- Reine Info-Website
+- HTML5
+- Bootstrap 3.x
+
+---
+
+### Live-Demo kinderkultur.ch
+
+---
+
+![bg 75%](_bilder/kinderkultur1.png)
+
+---
+
+<!-- footer: Linus' Pet Project @SUVA 2019 -->
+
+---
+
+## kinderkultur.ch 2.0: Server
+
+---
+
+### Servertechnologien (Auswahl)
+
+- Python
+- Java
+- .NET
 
 <!-- footer: Linus' Pet Project @SUVA 2019 - Server -->
 
@@ -56,7 +84,7 @@ dotnet new angular
 
 ---
 
-![](_bilder/dotnetNewAngular.png)
+![bg 75%](_bilder/dotnetNewAngular.png)
 
 ---
 
@@ -75,7 +103,7 @@ _Verworfen weil zu enge Verwebung von Client & Server_
 
 ---
 
-#### ASP.NET WebAPI
+#### ASP.NET Core 2.1 WebAPI
 
 ```bash
 dotnet new webapi
@@ -83,7 +111,7 @@ dotnet new webapi
 
 ---
 
-![](_bilder/dotnetNewWebapi.png)
+![bg 75%](_bilder/dotnetNewWebapi.png)
 
 ---
 
@@ -101,7 +129,18 @@ dotnet new webapi
 
 ---
 
-## Client Überblick
+## kinderkultur.ch 2.0: Client
+
+<!-- footer: Linus' Pet Project @SUVA 2019 - Client -->
+
+---
+
+### Clienttechnologien (Auswahl)
+
+- Angular
+- React
+- Vue
+- ASP.NET Razor
 
 <!-- footer: Linus' Pet Project @SUVA 2019 - Client -->
 
@@ -134,7 +173,7 @@ _Startet mit Hilfe von node.js_
 
 ---
 
-![](_bilder/ngNew.png)
+![bg 75%](_bilder/ngNew.png)
 
 ---
 
@@ -224,7 +263,7 @@ module.exports = {
 
 ---
 
-![](_bilder/webPackUrl.png)
+![bg 75%](_bilder/webPackUrl.png)
 
 ---
 
@@ -232,7 +271,7 @@ module.exports = {
 
 ---
 
-## Übersicht Datenbanken
+## kinderkultur.ch 2.0: Datenbanken
 
 <!-- footer: Linus' Pet Project @SUVA 2019 - Datenbanken -->
 
@@ -240,7 +279,7 @@ module.exports = {
 
 <!-- footer: Linus' Pet Project @SUVA 2019 - Datenbanken -->
 
-## NoSQL
+### NoSQL (Dokumentbasierende) Datenbanken (Auswahl)
 
 - Cosmos DB (Azure)
 - Couchbase
@@ -254,7 +293,7 @@ module.exports = {
 
 ---
 
-### Mongo DB
+#### Mongo DB
 
 - Platzhirsch
 - Opensource
@@ -294,7 +333,7 @@ var collection = database.GetCollection("restaurants");
 
 ---
 
-## OR-Mapping
+### OR-Mapping
 
 <!-- footer: Linus' Pet Project @SUVA 2019 -->
 
@@ -306,7 +345,7 @@ var collection = database.GetCollection("restaurants");
 
 <!-- footer: Linus' Pet Project @SUVA 2019 - Datenbanken -->
 
-### Entity Framework Core
+#### Entity Framework Core
 
 - Ausschlaggebender Punkt: Identity on ASP.NET Core als SQL Datenbank
 - Code First Ansatz ist schwierig im NoSQL
@@ -317,15 +356,13 @@ var collection = database.GetCollection("restaurants");
 
 ---
 
-**Neu generierte Tabellen:**
-
-![](_bilder/TabellenSQL.png)
+![bg 75%](_bilder/TabellenSQL.png)
 
 ---
 
 <!-- footer:  -->
 
-## SQL
+### SQL (Relationale) Datenbanken (Auswahl)
 
 - PostgreSQL
 - MySQL
@@ -338,7 +375,7 @@ var collection = database.GetCollection("restaurants");
 
 ---
 
-### Maria DB
+#### Maria DB
 
 - Opensource
 - MySql Derrivat
@@ -348,12 +385,12 @@ var collection = database.GetCollection("restaurants");
 
 <!-- footer:  -->
 
-## Hosting
+## kinderkultur.ch 2.0: Hosting
 
 ---
 <!-- footer: Linus' Pet Project @SUVA 2019 - Hosting -->
 
-### Varianten
+### Hosting- Möglichkeiten (Auswahl)
 
 - Azure (Microsoft Cloud)
 - Hosting (.NET Core)
@@ -379,7 +416,7 @@ Webserver mit Datenbanken
 
 <!-- footer:  -->
 
-## Docker
+### Docker
 
 ---
 <!-- footer: Linus' Pet Project @SUVA 2019 - Docker -->
@@ -442,7 +479,7 @@ dotnet run
 
 <!-- footer:  -->
 
-## Demo
+## kinderkultur.ch 2.0: Demo
 
 ---
 <!-- footer: Linus' Pet Project @SUVA 2019 - Demo -->
@@ -462,21 +499,15 @@ Tool zum Designen und Testen von RESTful Webservices
 
 ---
 
-**Swagger URL:**
-
-![](_bilder/swaggerUrl.png)
+![bg 75%](_bilder/swaggerUrl.png)
 
 ---
 
-**Swagger GET:**
-
-![](_bilder/SwaggerGet.png)
+![bg 75%](_bilder/SwaggerGet.png)
 
 ---
 
-**Swagger Response:**
-
-![](_bilder/SwaggerResponse.png)
+![bg 75%](_bilder/SwaggerResponse.png)
 
 ---
 
@@ -487,7 +518,7 @@ Versionierung der API URL
 - Release vs. Production
 
 ```xml
-<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" 
+<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning"
     Version="2.3.0" />
 ```
 
@@ -495,12 +526,42 @@ Versionierung der API URL
 
 #### Source Code
 
+---
+
+![bg 75%](_bilder/VSCode.png)
+
+---
+
 ### Client
 
-### Readonly Links
+---
 
-### Anmeldung CMS
+![bg 75%](_bilder/kinderkultur2_home_loggedout.png)
 
-### Links Editierbar
+---
 
-### Signal R
+![bg 75%](_bilder/kinderkultur2_links_loggedout.png)
+
+---
+
+![bg 75%](_bilder/kinderkultur2_login.png)
+
+---
+
+![bg 75%](_bilder/kinderkutlur2_links_loggedin.png)
+
+---
+
+![bg 75%](_bilder/kinderkultur2_links_editlist.png)
+
+---
+
+![bg 75%](_bilder/kinderkultur2_links_editdetail.png)
+
+---
+
+## Ende
+
+Besten Dank!
+
+---
